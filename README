@@ -1,6 +1,6 @@
 Pair
 
-Long description.
+Encode key/value pairs for database storage.
 
     Documentation:  http://bigeasy.github.io/pair
     Source:         http://github.com/bigeasy/pair
