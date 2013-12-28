@@ -52,5 +52,8 @@ var pair = module.exports = {
             new Buffer(value).copy(buffer, Buffer.byteLength(header) + record.key.length)
             return buffer
         }
+    },
+    serializer: function (object, key) {
+        return pair.serialize[key ? 'key' : 'record'](object)
     }
 }
