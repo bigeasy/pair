@@ -55,5 +55,14 @@ var pair = module.exports = {
     },
     serializer: function (object, key) {
         return pair.serialize[key ? 'key' : 'record'](object)
+    },
+    deserialize: {
+        key: function (buffer) {
+            for (var i = 0; buffer[i] != 0x20; i++);
+            var header = buffer.toString('utf8', 0, i).split(' ')
+            var value = new Buffer(buffer.length - (i + 1))
+            buffer.copy(value, 0, i + 1)
+            return { value: value, version: +(header[0]) }
+        }
     }
 }
