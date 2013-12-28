@@ -34,5 +34,14 @@ var pair = module.exports = {
             value: getKeyEncoder(options).encode(key),
             version: version
         }
+    },
+    serialize: {
+        key: function (key) {
+            var header = [ key.version || 0 ].join(' ') + ' '
+            var buffer = new Buffer(Buffer.byteLength(header) + key.value.length)
+            buffer.write(header)
+            new Buffer(key.value).copy(buffer, Buffer.byteLength(header))
+            return buffer
+        }
     }
 }
