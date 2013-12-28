@@ -28,5 +28,11 @@ var pair = module.exports = {
             operation: operation,
             version: version
         }
+    },
+    key: function (key, version, options) {
+        return {
+            value: getKeyEncoder(options).encode(key),
+            version: version
+        }
     }
 }
