@@ -12,26 +12,18 @@ function option (keys, options) {
     }
 }
 
-function getKeyEncoder (options) {
-    return encoders[option([ 'keyEncoding' ], options) || 'utf8']
-}
-
-function getValueEncoder (options) {
-    return encoders[option([ 'valueEncoding', 'encoding' ], options) || 'utf8']
-}
-
 var pair = module.exports = {
     record: function (key, value, operation, version, options) {
         return {
-            key: getKeyEncoder(options).encode(key),
-            value: getValueEncoder(options).encode(value),
+            key: pair.encoder.key(options).encode(key),
+            value: pair.encoder.value(options).encode(value),
             operation: operation,
             version: version
         }
     },
     key: function (key, version, options) {
         return {
-            value: getKeyEncoder(options).encode(key),
+            value: pair.encoder.key(options).encode(key),
             version: version
         }
     },
@@ -43,6 +35,14 @@ var pair = module.exports = {
             if (left[i] - right[i]) return left[i] - right[i]
         }
         return left.length - right.length
+    },
+    encoder: {
+        key: function (options) {
+            return encoders[option([ 'keyEncoding' ], options) || 'utf8']
+        },
+        value: function (options) {
+            return encoders[option([ 'valueEncoding', 'encoding' ], options) || 'utf8']
+        }
     },
     serialize: {
         key: function (key) {
