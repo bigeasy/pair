@@ -35,6 +35,9 @@ var pair = module.exports = {
             version: version
         }
     },
+    extract: function (record) {
+        return record.key
+    },
     compare: function (left, right) {
         for (var i = 0, I = Math.min(left.length, right.length); i < I; i++) {
             if (left[i] - right[i]) return left[i] - right[i]
