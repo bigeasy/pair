@@ -1,6 +1,6 @@
 {
     "name":             "pair",
-    "version":          "0.0.0",
+    "version":          "0.0.1",
     "author":           "Alan Gutierrez <alan@prettyrobots.com>",
     "description":      "Encode key/value pairs for database storage.",
     "url":              "http://bigeasy.github.com/pair",
