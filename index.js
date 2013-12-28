@@ -35,6 +35,12 @@ var pair = module.exports = {
             version: version
         }
     },
+    compare: function (left, right) {
+        for (var i = 0, I = Math.min(left.length, right.length); i < I; i++) {
+            if (left[i] - right[i]) return left[i] - right[i]
+        }
+        return left.length - right.length
+    },
     serialize: {
         key: function (key) {
             var header = [ key.version || 0 ].join(' ') + ' '
