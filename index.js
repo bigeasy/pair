@@ -42,6 +42,15 @@ var pair = module.exports = {
             buffer.write(header)
             new Buffer(key.value).copy(buffer, Buffer.byteLength(header))
             return buffer
+        },
+        record: function (record) {
+            var value = record.operation == 'del' ? '' : record.value
+            var header = [ record.version || 0, record.operation, record.key.length ].join(' ') + ' '
+            var buffer = new Buffer(Buffer.byteLength(header) + record.key.length + value.length)
+            buffer.write(header)
+            new Buffer(record.key).copy(buffer, Buffer.byteLength(header))
+            new Buffer(value).copy(buffer, Buffer.byteLength(header) + record.key.length)
+            return buffer
         }
     }
 }
