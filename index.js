@@ -63,6 +63,18 @@ var pair = module.exports = {
             var value = new Buffer(buffer.length - (i + 1))
             buffer.copy(value, 0, i + 1)
             return { value: value, version: +(header[0]) }
+        },
+        record: function (buffer) {
+            for (var i = 0, count = 3; buffer[i] != 0x20 || --count; i++);
+            var header = buffer.toString('utf8', 0, i).split(' ')
+            var version = +(header[0]), operation = header[1], length = +(header[2])
+            var key = new Buffer(length), value = null
+            buffer.copy(key, 0, i + 1, i + 1 + length)
+            if (operation == 'put') {
+                value = new Buffer(buffer.length - (i + 1 + length))
+                buffer.copy(value, 0, i + 1 + length)
+            }
+            return { key: key, value: value, version: version, operation: operation }
         }
     }
 }
