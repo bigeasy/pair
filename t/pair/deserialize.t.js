@@ -1,4 +1,4 @@
-require('proof')(10, function (equal, ok) {
+require('proof')(12, function (equal, ok) {
     var pair = require('../..'), key, record
 
     key = pair.deserialize.key(new Buffer('0 a'))
@@ -16,4 +16,10 @@ require('proof')(10, function (equal, ok) {
 
     record = pair.deserialize.record(new Buffer('0 del 1 a'))
     ok(record.value == null, 'value is null')
+
+    record = pair.deserializer(new Buffer('0 put 1 az'))
+    equal(record.value, 'z')
+
+    key = pair.deserializer(new Buffer('0 a'), true)
+    equal(key.value, 'a')
 })

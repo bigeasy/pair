@@ -85,5 +85,8 @@ var pair = module.exports = {
             }
             return { key: key, value: value, version: version, operation: operation }
         }
+    },
+    deserializer: function (buffer, key) {
+        return pair.deserialize[key ? 'key' : 'record'](buffer)
     }
 }
