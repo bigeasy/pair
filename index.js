@@ -16,7 +16,7 @@ var pair = module.exports = {
     record: function (key, value, operation, version, options) {
         return {
             key: pair.encoder.key(options).encode(key),
-            value: pair.encoder.value(options).encode(value),
+            value: operation == 'put' ? pair.encoder.value(options).encode(value) : (void(0)),
             operation: operation,
             version: version
         }
