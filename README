@@ -1,6 +1,8 @@
 Pair
 
-Encode key/value pairs for database storage.
+Encode key/value pairs for LevelDB-style database storage in a Strata b-tree.
+
+    Discussion:     http://bigeasy.github.io/pair/issues/1
 
     Documentation:  http://bigeasy.github.io/pair
     Source:         http://github.com/bigeasy/pair

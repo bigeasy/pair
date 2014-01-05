@@ -2,7 +2,7 @@
     "name":             "pair",
     "version":          "0.0.2",
     "author":           "Alan Gutierrez <alan@prettyrobots.com>",
-    "description":      "Encode key/value pairs for database storage.",
+    "description":      "Encode key/value pairs for LevelDB-style database storage in a Strata b-tree.",
     "url":              "http://bigeasy.github.com/pair",
     "keywords":
     [
