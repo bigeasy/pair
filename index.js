@@ -23,10 +23,8 @@ var pair = module.exports = {
         }
     },
     key: function (key, version, options) {
-        return {
-            value: pair.encoder.key(options).encode(key),
-            version: version
-        }
+        key = Buffer.isBuffer(key) ? key : pair.encoder.key(options).encode(key)
+        return { value: key, version: version }
     },
     extract: function (record) {
         return record.key

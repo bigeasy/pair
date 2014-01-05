@@ -9,3 +9,4 @@ library.
 ### Issue by Issue
 
  * Do not encode key if it is a buffer in `record`. #26.
+ * Do not encode key if it is a buffer in `key`. #21.
