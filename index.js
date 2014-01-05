@@ -18,7 +18,9 @@ var pair = module.exports = {
         if (operation == 'del') {
             value = (void(0))
         } else {
-            value = Buffer.isBuffer(value) ? value : pair.encoder.value(options).encode(value)
+            value = Buffer.isBuffer(value)
+                  ? value
+                  : pair.encoder.value(options).encode(String(value))
         }
         return { key: key, value: value, operation: operation, version: version }
     },
