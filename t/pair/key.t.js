@@ -1,4 +1,4 @@
-require('proof')(2, function (equal) {
+require('proof')(3, function (equal) {
     var pair = require('../..'), record
     record = pair.key('a', 0, [ {}, { keyEncoding: 'utf-8' } ])
     equal(record.value.toString(), 'a', 'value')
