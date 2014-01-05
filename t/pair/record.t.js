@@ -1,4 +1,4 @@
-require('proof')(8, function (equal, ok) {
+require('proof')(9, function (equal, ok) {
     var pair = require('../..'), record
     record = pair.record('a', 'z', 'put', 0, [])
     equal(record.key.toString(), 'a', 'key')
@@ -10,6 +10,7 @@ require('proof')(8, function (equal, ok) {
     record = pair.record(new Buffer('a'), new Buffer('z'), 'put', 0, [])
     equal(record.key.toString(), 'a', 'key as buffer')
     equal(record.value.toString(), 'z', 'value as buffer')
-    record = pair.record('1', 9, 'put', 0, [])
+    record = pair.record(1, 9, 'put', 0, [])
     equal(record.value.toString(), '9', 'value as number')
+    equal(record.key.toString(), '1', 'key as number')
 })

@@ -14,7 +14,7 @@ function option (keys, options) {
 
 var pair = module.exports = {
     record: function (key, value, operation, version, options) {
-        key = Buffer.isBuffer(key) ? key : pair.encoder.key(options).encode(key)
+        key = Buffer.isBuffer(key) ? key : pair.encoder.key(options).encode(String(key))
         if (operation == 'del') {
             value = (void(0))
         } else {
