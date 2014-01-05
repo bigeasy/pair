@@ -10,4 +10,5 @@ library.
 
  * Do not encode key if it is a buffer in `record`. #26.
  * Convert key to string before encoding in `key`. #24.
+ * Do not encode value if it is a buffer. #22.
  * Do not encode key if it is a buffer in `key`. #21.

@@ -15,12 +15,12 @@ function option (keys, options) {
 var pair = module.exports = {
     record: function (key, value, operation, version, options) {
         key = Buffer.isBuffer(key) ? key : pair.encoder.key(options).encode(key)
-        return {
-            key: key,
-            value: operation == 'put' ? pair.encoder.value(options).encode(value) : (void(0)),
-            operation: operation,
-            version: version
+        if (operation == 'del') {
+            value = (void(0))
+        } else {
+            value = Buffer.isBuffer(value) ? pair.encoder.value(options).encode(value) : value
         }
+        return { key: key, value: value, operation: operation, version: version }
     },
     key: function (key, version, options) {
         key = Buffer.isBuffer(key) ? key : pair.encoder.key(options).encode(String(key))
