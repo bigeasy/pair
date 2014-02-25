@@ -3,7 +3,6 @@
     "version":          "0.0.3",
     "author":           "Alan Gutierrez <alan@prettyrobots.com>",
     "description":      "Encode key/value pairs for LevelDB-style database storage in a Strata b-tree.",
-    "url":              "http://bigeasy.github.com/pair",
     "keywords":
     [
                         "btree", "leveldb", "levelup", "binary", "mvcc",
