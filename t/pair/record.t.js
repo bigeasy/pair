@@ -1,4 +1,6 @@
-require('proof')(9, function (assert) {
+require('proof')(9, prove)
+
+function prove (assert) {
     var pair = require('../..'), record
     record = pair.record('a', 'z', 'put', 0, [])
     assert(record.key.toString(), 'a', 'key')
@@ -13,4 +15,4 @@ require('proof')(9, function (assert) {
     record = pair.record(1, 9, 'put', 0, [])
     assert(record.value.toString(), '9', 'value as number')
     assert(record.key.toString(), '1', 'key as number')
-})
+}

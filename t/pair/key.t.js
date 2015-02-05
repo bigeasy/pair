@@ -1,10 +1,12 @@
-require('proof')(4, function (equal) {
+require('proof')(4, prove)
+
+function prove (assert) {
     var pair = require('../..'), record
     record = pair.key('a', 0, [ {}, { keyEncoding: 'utf-8' } ])
-    equal(record.value.toString(), 'a', 'value')
-    equal(record.version, 0, 'version')
+    assert(record.value.toString(), 'a', 'value')
+    assert(record.version, 0, 'version')
     record = pair.key(new Buffer('a'), 0, [ {}, { keyEncoding: 'utf-8' } ])
-    equal(record.value.toString(), 'a', 'value as buffer')
+    assert(record.value.toString(), 'a', 'value as buffer')
     record = pair.key(1, 0, [ {}, { keyEncoding: 'utf-8' } ])
-    equal(record.value.toString(), '1', 'value as number')
-})
+    assert(record.value.toString(), '1', 'value as number')
+}

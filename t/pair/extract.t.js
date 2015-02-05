@@ -1,4 +1,6 @@
-require('proof')(1, function (equal) {
+require('proof')(1, prove)
+
+function prove (assert) {
     var pair = require('../..')
-    equal(pair.extract({ key: new Buffer('a') }).toString(), 'a', 'extract')
-})
+    assert(pair.extract({ key: new Buffer('a') }).toString(), 'a', 'extract')
+}

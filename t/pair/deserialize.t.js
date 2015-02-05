@@ -1,4 +1,6 @@
-require('proof')(12, function (assert) {
+require('proof')(12, prove)
+
+function prove (assert) {
     var pair = require('../..'), key, record
 
     key = pair.deserialize.key(new Buffer('0 a'))
@@ -22,4 +24,4 @@ require('proof')(12, function (assert) {
 
     key = pair.deserializer(new Buffer('0 a'), true)
     assert(key.value, 'a')
-})
+}
