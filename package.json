@@ -21,6 +21,7 @@
                         "type": "git",
                         "url": "http://github.com/bigeasy/pair.git"
     },
+    "main":             "pair",
     "dependencies":
     {
                         "encode":             "0.0.1"
