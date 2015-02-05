@@ -1,4 +1,5 @@
 ### Issue by Issue
 
+ * Remove `require.t.js`. #37.
  * Rename main module to `pair.js`. #36.
  * Upgrade Proof to 0.0.50. #35.
