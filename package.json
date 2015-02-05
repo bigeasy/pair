@@ -24,11 +24,11 @@
     "main":             "pair",
     "dependencies":
     {
-                        "encode":             "0.0.1"
+                        "encode":             "0.0.2"
     },
     "devDependencies":
     {
-                        "proof":              "0.0.50"
+                        "proof":              "0.0.51"
     },
     "scripts":
     {
