@@ -1,5 +1,6 @@
 ### Issue by Issue
 
+ * Update license dates. #39.
  * Use a `prove` named function in tests. #38.
  * Remove `require.t.js`. #37.
  * Rename main module to `pair.js`. #36.
