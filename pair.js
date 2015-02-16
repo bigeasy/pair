@@ -32,7 +32,7 @@ var pair = module.exports = {
         return record.key
     },
     compare: function (left, right) {
-        var i = left.length
+        var I = left.length
         var compare = I - right.length
         if (compare === 0) {
             for (var i = 0; i < I; i++) {
