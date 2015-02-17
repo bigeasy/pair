@@ -1,5 +1,6 @@
 ### Issue by Issue
 
+ * Implement binary serialization. #43.
  * Upgrade Encode to 0.0.2. #40.
  * Update license dates. #39.
  * Use a `prove` named function in tests. #38.

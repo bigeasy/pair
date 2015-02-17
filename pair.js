@@ -51,49 +51,63 @@ var pair = module.exports = {
             return encoders[option([ 'valueEncoding', 'encoding' ], options) || 'utf8']
         }
     },
-    serialize: {
-        key: function (key) {
-            var header = [ key.version || 0 ].join(' ') + ' '
-            var buffer = new Buffer(Buffer.byteLength(header) + key.value.length)
-            buffer.write(header)
-            new Buffer(key.value).copy(buffer, Buffer.byteLength(header))
-            return buffer
-        },
-        record: function (record) {
-            var value = record.operation == 'del' ? '' : record.value
-            var header = [ record.version || 0, record.operation, record.key.length ].join(' ') + ' '
-            var buffer = new Buffer(Buffer.byteLength(header) + record.key.length + value.length)
-            buffer.write(header)
-            new Buffer(record.key).copy(buffer, Buffer.byteLength(header))
-            new Buffer(value).copy(buffer, Buffer.byteLength(header) + record.key.length)
-            return buffer
-        }
-    },
-    serializer: function (object, key) {
-        return pair.serialize[key ? 'key' : 'record'](object)
-    },
-    deserialize: {
-        key: function (buffer) {
-            for (var i = 0; buffer[i] != 0x20; i++);
-            var header = buffer.toString('utf8', 0, i).split(' ')
-            var value = new Buffer(buffer.length - (i + 1))
-            buffer.copy(value, 0, i + 1)
-            return { value: value, version: +(header[0]) }
-        },
-        record: function (buffer) {
-            for (var i = 0, count = 3; buffer[i] != 0x20 || --count; i++);
-            var header = buffer.toString('utf8', 0, i).split(' ')
-            var version = +(header[0]), operation = header[1], length = +(header[2])
-            var key = new Buffer(length), value = null
-            buffer.copy(key, 0, i + 1, i + 1 + length)
-            if (operation == 'put') {
-                value = new Buffer(buffer.length - (i + 1 + length))
-                buffer.copy(value, 0, i + 1 + length)
+    serializers: {
+        key: {
+            serialize: function (key) {
+                return key
+            },
+            sizeOf: function (key) {
+                return key.value.length + 4
+            },
+            write: function (key, buffer, offset, length) {
+                buffer.writeUInt32BE(key.version, offset, true)
+                key.value.copy(buffer, offset + 4, 0, key.value.length)
             }
-            return { key: key, value: value, version: version, operation: operation }
+        },
+        record: {
+            serialize: function (record) {
+                return record
+            },
+            sizeOf: function (record) {
+                return (record.operation == 'del' ? 0 : record.value.length) +
+                       record.key.length + 12
+            },
+            write: function (record, buffer, offset, length) {
+                buffer.writeUInt32BE(record.version, offset + 0, true)
+                buffer.writeUInt32BE(record.operation === 'put' ? 1 : 0, offset + 4, true)
+                buffer.writeUInt32BE(record.key.length, offset + 8, true)
+                record.key.copy(buffer, offset + 12, 0, record.key.length)
+                if (record.operation === 'put') {
+                    record.value.copy(buffer, offset + 12 + record.key.length, 0, record.value.length)
+                }
+            }
         }
     },
-    deserializer: function (buffer, key) {
-        return pair.deserialize[key ? 'key' : 'record'](buffer)
+    deserializers: {
+        key: function (buffer, start, end) {
+            return {
+                version: buffer.readUInt32BE(start, true),
+                value: new Buffer(buffer.slice(start + 4, end))
+            }
+        },
+        record: function (buffer, start, end) {
+            var version = buffer.readUInt32BE(start, true)
+            var operation = buffer.readUInt32BE(start + 4, true) ? 'put' : 'del'
+            var keyLength = buffer.readUInt32BE(start + 8, true)
+            var key = new Buffer(buffer.slice(start + 12, start + 12 + keyLength))
+            if (operation == 'put') {
+                return {
+                    version: version,
+                    operation: operation,
+                    key: key,
+                    value: buffer.slice(start + 12 + keyLength, end)
+                }
+            }
+            return {
+                version: version,
+                operation: operation,
+                key: key
+            }
+        }
     }
 }
