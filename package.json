@@ -1,6 +1,6 @@
 {
     "name":             "pair",
-    "version":          "0.0.5",
+    "version":          "0.0.6",
     "author":           "Alan Gutierrez <alan@prettyrobots.com>",
     "description":      "Encode key/value pairs for LevelDB-style database storage in a Strata b-tree.",
     "keywords":
