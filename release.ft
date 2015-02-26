@@ -1,5 +1,6 @@
 ### Issue by Issue
 
+ * Revert broken `compare`. #45.
  * Implement binary serialization. #43.
  * Upgrade Encode to 0.0.2. #40.
  * Update license dates. #39.

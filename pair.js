@@ -32,16 +32,10 @@ var pair = module.exports = {
         return record.key
     },
     compare: function (left, right) {
-        var I = left.length
-        var compare = I - right.length
-        if (compare === 0) {
-            for (var i = 0; i < I; i++) {
-                if (compare = left[i] - right[i]) {
-                    break
-                }
-            }
+        for (var i = 0, I = Math.min(left.length, right.length); i < I; i++) {
+            if (left[i] - right[i]) return left[i] - right[i]
         }
-        return compare
+        return left.length - right.length
     },
     encoder: {
         key: function (options) {
