@@ -11,11 +11,7 @@
     "contributors":     [],
     "homepage":         "https://github.com/bigeasy/pair",
     "bugs":             "https://github.com/bigeasy/pair/issues",
-    "licenses":
-    [{
-                        "type": "MIT",
-                        "url": "http://github.com/bigeasy/pair/raw/master/LICENSE"
-    }],
+    "license":          "MIT",
     "repository":
     {
                         "type": "git",
