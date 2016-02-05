@@ -20,7 +20,7 @@
     "main":             "pair",
     "dependencies":
     {
-                        "encode":             "0.0.3"
+                        "encode":             "1.x"
     },
     "devDependencies":
     {
