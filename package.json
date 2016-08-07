@@ -1,33 +1,35 @@
 {
-    "name":             "pair",
-    "version":          "1.0.0",
-    "author":           "Alan Gutierrez <alan@prettyrobots.com>",
-    "description":      "Encode key/value pairs for LevelDB-style database storage in a Strata b-tree.",
+    "name":                 "pair",
+    "version":              "1.0.0",
+    "author":               "Alan Gutierrez <alan@prettyrobots.com>",
+    "description":
+
+      "Encode key/value pairs for LevelDB-style database storage in a Strata b-tree.",
+
     "keywords":
     [
-                        "btree", "leveldb", "levelup", "binary", "mvcc",
-                        "database", "json", "b-tree", "concurrent", "persistence"
+                            "btree", "leveldb", "levelup", "binary", "mvcc",
+                            "database", "json", "b-tree", "concurrent", "persistence"
     ],
-    "contributors":     [],
-    "homepage":         "https://github.com/bigeasy/pair",
-    "bugs":             "https://github.com/bigeasy/pair/issues",
-    "license":          "MIT",
+    "homepage":             "https://github.com/bigeasy/pair",
+    "bugs":                 "https://github.com/bigeasy/pair/issues",
+    "license":              "MIT",
     "repository":
     {
-                        "type": "git",
-                        "url": "http://github.com/bigeasy/pair.git"
+                            "type": "git",
+                            "url": "http://github.com/bigeasy/pair.git"
     },
-    "main":             "pair",
+    "main":                 "pair",
     "dependencies":
     {
-                        "encode":             "1.x"
+                            "encode":                       "1.x"
     },
     "devDependencies":
     {
-                        "proof":              "1.x"
+                            "proof":                        "1.x"
     },
     "scripts":
     {
-                        "test": "proof platform win32 && proof test */*/*.t.js || t/test"
+                            "test": "proof platform win32 && proof test */*/*.t.js || t/test"
     }
 }
