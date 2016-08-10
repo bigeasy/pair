@@ -22,11 +22,11 @@
     "main":                 "pair",
     "dependencies":
     {
-                            "encode":                       "1.x"
+                            "encode":                       "1.0.x"
     },
     "devDependencies":
     {
-                            "proof":                        "1.x"
+                            "proof":                        "1.0.x"
     },
     "scripts":
     {
