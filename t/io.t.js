@@ -1,7 +1,7 @@
 require('proof')(9, prove)
 
 function prove (assert) {
-    var pair = require('../..'), buffer = new Buffer(1024)
+    var pair = require('..'), buffer = new Buffer(1024)
 
     var key, record, length
 

@@ -1,7 +1,7 @@
 require('proof')(9, prove)
 
 function prove (assert) {
-    var pair = require('../..'), record
+    var pair = require('..'), record
     record = pair.record('a', 'z', 'put', 0, [])
     assert(record.key.toString(), 'a', 'key')
     assert(record.value.toString(), 'z', 'value')

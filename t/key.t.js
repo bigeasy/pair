@@ -1,7 +1,7 @@
 require('proof')(4, prove)
 
 function prove (assert) {
-    var pair = require('../..'), record
+    var pair = require('..'), record
     record = pair.key('a', 0, [ {}, { keyEncoding: 'utf-8' } ])
     assert(record.value.toString(), 'a', 'value')
     assert(record.version, 0, 'version')
